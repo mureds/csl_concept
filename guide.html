@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CSL 쉽게 이해하기</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="docbody">
+  <header>
+    <h1>CSL 쉽게 이해하기
+      <span class="nav"><a href="index.html">시각화</a><a href="guide.html">쉬운 설명</a><a href="math.html">수학</a></span>
+    </h1>
+    <p class="sub">일치격자(Coincidence Site Lattice)와 Σ, 미스오리엔테이션, Brandon 기준을 그림·비유로.</p>
+  </header>
+  <div class="doc">
+    <div class="card"><b>30초 요약</b>
+      <ul>
+        <li><b>미스오리엔테이션</b> = 두 결정이 서로 <b>얼마나 돌아가 있나</b>(회전각 θ).</li>
+        <li><b>일치점</b> = 두 결정 격자가 <b>딱 겹치는 자리</b>.</li>
+        <li><b>CSL</b> = 그 일치점들이 이루는 <b>규칙적 격자</b>.</li>
+        <li><b>Σ (시그마)</b> = <b>격자점 몇 개마다 하나</b>가 일치점인지 (작을수록 잘 맞는 특별한 경계). Σ5 = 5개 중 1개.</li>
+      </ul>
+    </div>
+
+    <h2>1. 미스오리엔테이션 — "얼마나 돌아가 있나"</h2>
+    <p>결정립계(grain boundary)는 같은 물질의 두 결정이 <b>서로 다른 방향</b>으로 만난 경계입니다. 두 결정의 방향 차이가 <b>미스오리엔테이션(회전각 θ)</b>입니다.</p>
+    <div class="analogy">🧩 <b>비유</b>: 같은 모눈종이 두 장을 겹치고, 위 장을 조금 돌리면 대부분 점은 어긋납니다. 이 "돌린 각도"가 θ.</div>
+
+    <h2>2. 일치점과 CSL — "가끔 딱 겹치는 자리"</h2>
+    <p>위 장을 돌리면 대부분 어긋나지만, <b>특정 각도</b>에서는 위·아래 점이 <b>규칙적으로 정확히 겹치는 자리</b>가 생깁니다. 이 자리를 <b>일치점(coincidence site)</b>, 그들이 이루는 격자를 <b>CSL</b>이라 합니다. 시각화 페이지의 초록 동그라미가 일치점입니다.</p>
+    <div class="tip">일치점이 <b>촘촘할수록</b> 두 결정이 잘 맞물려 경계에너지가 낮은 <b>특별한 경계(special boundary)</b>가 됩니다. 결정립계 공학(grain boundary engineering)의 핵심 아이디어입니다.</div>
+
+    <h2>3. Σ (시그마) — "몇 개마다 하나 겹치나"</h2>
+    <p>Σ는 <b>전체 격자점 중 일치점의 비율의 역수</b>입니다. <span class="kv">Σ5</span> = 격자점 5개마다 1개가 일치점(=CSL 단위세포가 원래 세포의 5배). <b>Σ가 작을수록</b> 일치점이 촘촘 → 더 특별하고 안정한 경계. Σ1 = 완전히 같은 방향(경계 없음).</p>
+    <p>예(입방정 [001] 회전): <span class="kv">Σ5 = 36.87°</span>, <span class="kv">Σ13 = 22.62°</span>, <span class="kv">Σ17 = 28.07°</span> …</p>
+
+    <h2>4. 그 유명한 그래프 — Σ vs 회전각</h2>
+    <p>CSL은 <b>아무 각도에서나 생기지 않고</b> 특정 각도에서만 생깁니다. 이를 한눈에 보여주는 것이 <b>Σ–misorientation angle scatter</b>(시각화 페이지 오른쪽): 가로축 θ, 세로축 Σ에 CSL을 점으로 찍습니다. 낮은 Σ(중요한 경계)는 드문드문, 높은 Σ는 촘촘히 흩어집니다.</p>
+    <h3>Brandon 기준</h3>
+    <p>실제 결정은 이상적 CSL 각도에서 조금 벗어나도 여전히 "그 Σ 경계"로 봅니다. 허용 범위가 <b>Brandon 기준</b>:</p>
+    <div class="card" style="text-align:center;font-size:16px">Δθ<sub>max</sub> = 15° / √Σ</div>
+    <p>Σ가 클수록 허용 범위가 좁아집니다(Σ5는 ±6.7°, Σ25는 ±3°). 그래프의 하늘색 막대가 이 범위입니다.</p>
+
+    <h2>5. Twist vs Tilt 경계</h2>
+    <ul>
+      <li><b>Twist(비틀림) 경계</b>: 회전축이 <b>경계면에 수직</b> — 시각화의 2D 격자가 이 경우.</li>
+      <li><b>Tilt(기울임) 경계</b>: 회전축이 <b>경계면에 평행</b>.</li>
+    </ul>
+    <p>둘 다 같은 Σ 개념으로 기술되지만 원자 배열은 다릅니다.</p>
+
+    <h2>6. 이렇게 써보세요</h2>
+    <ol>
+      <li><b>θ 슬라이더</b>를 0에서 천천히 올리며 초록 일치점이 언제 <b>촘촘해지는지</b> 관찰.</li>
+      <li>“Σ 각도로 이동”에서 <b>Σ5(36.87°)</b> 선택 → 규칙적 CSL 확인.</li>
+      <li>오른쪽 <b>Σ–θ 그래프</b>에서 점을 클릭하면 그 각도로 이동. 주황선(현재 θ)이 어느 Σ 점과 가까운지 보기.</li>
+      <li>회전축을 [110]·[111]로 바꿔 CSL 분포가 어떻게 달라지는지 비교.</li>
+    </ol>
+    <a class="back" href="index.html">← 시각화로</a> · <a class="back" href="math.html">수학 설명 →</a>
+  </div>
+</body>
+</html>

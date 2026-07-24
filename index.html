@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CSL 개념 — Coincidence Site Lattice Visualizer</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>CSL — Coincidence Site Lattice
+      <span class="nav"><a href="index.html">시각화</a><a href="guide.html">쉬운 설명</a><a href="math.html">수학</a></span>
+    </h1>
+    <p class="sub">두 결정을 회전시켜 겹치는 격자점(일치점)이 이루는 <b>일치격자(CSL)</b>와 <b>Σ</b>를 2D로 시각화 · 오른쪽은 CSL의 대표 그래프 <b>Σ–misorientation angle scatter</b>(Brandon 기준 포함)</p>
+  </header>
+  <main>
+    <aside id="controls">
+      <section>
+        <h2>회전 (misorientation)</h2>
+        <label>비틀림 각 θ <span id="theta-v" class="hint">0.0°</span>
+          <input id="theta" type="range" min="0" max="90" step="0.1" value="0" /></label>
+        <label>Σ 각도로 이동
+          <select id="snap"></select></label>
+      </section>
+      <section>
+        <h2>표시</h2>
+        <label>표시 범위 <span id="region-v" class="hint">8 cells</span>
+          <input id="region" type="range" min="4" max="20" step="1" value="8" /></label>
+        <label>일치 허용오차 <span id="tol-v" class="hint">12%</span>
+          <input id="tol" type="range" min="0.02" max="0.3" step="0.01" value="0.12" /></label>
+        <label class="chk"><input id="tg-coin" type="checkbox" checked /> 일치점(CSL) 표시</label>
+      </section>
+      <section>
+        <h2>Σ–θ 그래프 축</h2>
+        <label>회전축 (scatter)
+          <select id="axis">
+            <option value="1">[001] (2D 격자와 동일)</option>
+            <option value="2">[110]</option>
+            <option value="3">[111]</option>
+          </select></label>
+        <p class="hint" style="float:none">왼쪽 2D 격자는 [001]/정사각 비틀림. 축을 바꾸면 오른쪽 scatter만 바뀝니다.</p>
+      </section>
+      <section id="readout">
+        <h2>정량 지표</h2>
+        <dl>
+          <dt>현재 θ</dt><dd id="r-theta">–</dd>
+          <dt>가장 가까운 CSL</dt><dd id="r-sigma">–</dd>
+          <dt>편차 / Brandon 한계</dt><dd id="r-dev">–</dd>
+          <dt>일치점 수</dt><dd id="r-coin">–</dd>
+        </dl>
+      </section>
+    </aside>
+    <div id="stage">
+      <div class="pane">
+        <h3>2D 일치격자 — 주황(고정) · 파랑(θ만큼 회전) · 초록(일치점)</h3>
+        <canvas id="cvLat"></canvas>
+        <div class="legend"><span><i class="a"></i>결정 A (고정)</span><span><i class="b"></i>결정 B (회전)</span><span><i class="co"></i>일치점 (CSL)</span></div>
+      </div>
+      <div class="pane">
+        <h3>Σ vs 회전각 θ — CSL의 대표 그래프 (점=CSL, 하늘색 막대=Brandon 허용범위, 주황선=현재 θ) · 클릭하면 이동</h3>
+        <canvas id="cvScatter"></canvas>
+        <div class="legend"><span><i class="co"></i>낮은 Σ (특별 경계)</span><span><i class="b"></i>높은 Σ</span><span>Brandon: Δθ<sub>max</sub> = 15°/√Σ</span></div>
+      </div>
+    </div>
+  </main>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

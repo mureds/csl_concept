@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CSL 수학</title>
+<link rel="stylesheet" href="css/style.css" />
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="docbody">
+  <header>
+    <h1>CSL 수학
+      <span class="nav"><a href="index.html">시각화</a><a href="guide.html">쉬운 설명</a><a href="math.html">수학</a></span>
+    </h1>
+    <p class="sub">일치격자 · Σ · Ranganathan 생성식 · Brandon 기준의 수학적 정의.</p>
+  </header>
+  <div class="doc">
+
+    <h2>1. 격자와 회전</h2>
+    <p>결정 격자점은 기저벡터 $\mathbf{a}_i$의 정수합 $\mathbf{r}=\sum_i n_i\mathbf{a}_i$ ($n_i\in\mathbb{Z}$)로 표현된다. 두 번째 결정은 회전 $R(\hat{\mathbf{n}},\theta)$로 얻는다(Rodrigues):</p>
+    <p>$$R=\mathbf{I}\cos\theta+(1-\cos\theta)\,\hat{\mathbf{n}}\hat{\mathbf{n}}^{\!\top}+[\hat{\mathbf{n}}]_\times\sin\theta$$</p>
+
+    <h2>2. 일치 조건과 CSL</h2>
+    <p>회전 후에도 <b>겹치는 격자점</b>(coincidence site)은 원래 격자점 $\mathbf{r}$이면서 $R\mathbf{r}$도 격자점인 점이다. 이들은 원래 격자의 <b>부분격자(sublattice)</b>를 이루며 이것이 <b>CSL</b>이다.</p>
+    <p>$$\text{CSL}=\{\mathbf{r}\in\Lambda \mid R\mathbf{r}\in\Lambda\}$$</p>
+
+    <h2>3. Σ 의 정의</h2>
+    <p>$\Sigma$는 <b>CSL 단위세포 부피와 결정 단위세포 부피의 비</b>, 즉 격자점 $\Sigma$개마다 하나가 일치점이다.</p>
+    <p>$$\Sigma=\frac{V_{\mathrm{CSL}}}{V_{\mathrm{cell}}}=\frac{1}{(\text{일치점 밀도})}$$</p>
+    <p>관례상 $\Sigma$는 <b>홀수</b>(입방정에서 2의 인수를 제거). $\Sigma=1$은 두 결정이 동일 방위(경계 없음).</p>
+
+    <h2>4. Ranganathan 생성식 — Σ와 θ</h2>
+    <p>공통 회전축 $[hkl]$ ($N=h^2+k^2+l^2$) 둘레의 회전에서, 정수 $m,p$에 대해 CSL이 생긴다:</p>
+    <p>$$\Sigma'=m^2+p^2N,\qquad \theta=2\arctan\!\Big(\frac{p\sqrt{N}}{m}\Big)$$</p>
+    <p>$$\Sigma=\frac{\Sigma'}{2^{\alpha}}\quad(\Sigma'\text{에서 2의 인수를 모두 제거})$$</p>
+    <p>예([001], $N=1$): $(m,p)=(3,1)\Rightarrow\theta=2\arctan\tfrac13=36.87^\circ,\ \Sigma'=10\Rightarrow\Sigma=5$. → 유명한 <b>Σ5</b>. 이 식으로 그린 것이 시각화 페이지의 <b>Σ–θ scatter</b>다.</p>
+    <table>
+      <thead><tr><th>축</th><th>대표 CSL (Σ, θ)</th></tr></thead>
+      <tbody>
+        <tr><td>[001]</td><td>Σ5 36.87° · Σ13 22.62° · Σ17 28.07° · Σ25 16.26°</td></tr>
+        <tr><td>[111]</td><td>Σ3 60° · Σ7 38.21° · Σ13 27.80° · Σ21 21.79°</td></tr>
+        <tr><td>[110]</td><td>Σ3 70.53° · Σ9 38.94° · Σ11 50.48° · Σ19 26.53°</td></tr>
+      </tbody>
+    </table>
+
+    <h2>5. Brandon 기준</h2>
+    <p>실제 경계는 이상적 CSL 각도에서 편차 $\Delta\theta$를 갖는다. 여전히 그 $\Sigma$ 경계로 인정하는 최대 편차:</p>
+    <p>$$\Delta\theta_{\max}=\frac{\theta_0}{\sqrt{\Sigma}},\qquad \theta_0\approx15^\circ$$</p>
+    <p>$\Sigma$가 클수록 허용범위가 좁다. 그래프의 하늘색 막대가 $\pm\Delta\theta_{\max}$이다.</p>
+
+    <h2>6. 이 사이트의 2D 구현</h2>
+    <p>2D 정사각 격자([001] twist에 해당)를 $\theta$만큼 회전시킨 뒤, 원점 격자와의 거리가 허용오차 $\varepsilon$ 이내인 점을 일치점으로 센다(<code>coincidences2D</code>). Σ–θ 점은 위 Ranganathan 식(<code>sigmaSeries</code>)으로 생성하고, Brandon 막대는 $15^\circ/\sqrt{\Sigma}$로 그린다(<code>js/csl2d.js</code>).</p>
+    <p class="sub">참고: 이 사이트는 <b>동일격자(same-lattice) CSL</b>(고전 결정립계 이론)을 다룬다. 서로 다른 두 상(이종상) 계면의 근사 일치는 재료별 도구
+      <a href="https://mureds.github.io/csl_cu_cu6sn5/">Cu//Cu₆Sn₅</a> · <a href="https://mureds.github.io/csl_cu_g/">Cu//G-phase</a> 참고.</p>
+
+    <a class="back" href="guide.html">← 쉬운 설명</a> · <a class="back" href="index.html">시각화 →</a>
+  </div>
+</body>
+</html>
